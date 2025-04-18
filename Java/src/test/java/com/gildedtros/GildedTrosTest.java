@@ -1,17 +1,61 @@
 package com.gildedtros;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class GildedTrosTest {
+public class GildedTrosTest {
 
-    @Test
-    void foo() {
-        Item[] items = new Item[] { new Item("foo", 0, 0) };
-        GildedTros app = new GildedTros(items);
-        app.updateQuality();
-        assertEquals("fixme", app.items[0].name);
+    private GildedTros app;
+    private Item[] items;
+
+    //Todo check all possible scenarios based on the Gilded Tros document.....
+
+    @Nested
+    class GeneralItemRules {
+
+        @Test
+        void shouldHaveSellInAndQuality() {
+            Item item = new Item("Ring of Cleansening Code", 10, 20);
+            assertEquals(10, item.sellIn);
+            assertEquals(20, item.quality);
+        }
+
+        @Test
+        void shouldLowersSellInAndQualityAtEndOfDay() {
+            items = new Item[]{new Item("Elixir of the SOLID", 5, 7)};
+            app = new GildedTros(items);
+            app.updateQuality();
+            assertEquals(4, items[0].sellIn);
+            assertEquals(6, items[0].quality);
+        }
+
+        @Test
+        void shouldDegradeQualityTwiceAsFastAfterSellDate() {
+            items = new Item[]{new Item("Elixir of the SOLID", 0, 10)};
+            app = new GildedTros(items);
+            app.updateQuality();
+            assertEquals(-1, items[0].sellIn);
+            assertEquals(8, items[0].quality);
+        }
+
+        @Test
+        void qualityIsNeverNegative() {
+            items = new Item[]{new Item("Elixir of the SOLID", 5, 0)};
+            app = new GildedTros(items);
+            app.updateQuality();
+            assertEquals(4, items[0].sellIn);
+            assertEquals(0, items[0].quality);
+        }
+
+        @Test
+        void qualityNeverExceedsFifty() {
+            items = new Item[]{new Item("Good Wine", 5, 50)};
+            app = new GildedTros(items);
+            app.updateQuality();
+            assertEquals(4, items[0].sellIn);
+            assertEquals(50, items[0].quality);
+        }
     }
-
 }
