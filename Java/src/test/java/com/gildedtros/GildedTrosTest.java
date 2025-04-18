@@ -58,4 +58,34 @@ public class GildedTrosTest {
             assertEquals(50, items[0].quality);
         }
     }
+
+
+    @Nested
+    class GoodWineItem {
+
+        @Test
+        void qualityIncreasesOverTime() {
+            items = new Item[]{new Item("Good Wine", 10, 10)};
+            app = new GildedTros(items);
+
+            app.updateQuality();
+            assertEquals(9, items[0].sellIn);
+            assertEquals(11, items[0].quality);
+        }
+    }
+
+    @Nested
+    class LegendaryItem {
+
+        @Test
+        void neverDecreasesInSellInOrQuality() {
+            items = new Item[]{new Item("B-DAWG Keychain", 0, 80)};
+            app = new GildedTros(items);
+
+            app.updateQuality();
+            assertEquals(0, items[0].sellIn);
+            assertEquals(80, items[0].quality);
+        }
+    }
+
 }
