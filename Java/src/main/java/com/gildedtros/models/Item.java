@@ -1,4 +1,4 @@
-package com.gildedtros;
+package com.gildedtros.models;
 
 public class Item {
 
