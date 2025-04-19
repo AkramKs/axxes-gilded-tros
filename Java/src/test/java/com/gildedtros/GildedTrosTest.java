@@ -74,6 +74,16 @@ public class GildedTrosTest {
             assertEquals(9, items[0].sellIn);
             assertEquals(11, items[0].quality);
         }
+
+        @Test
+        void qualityIncreasesEvenAfterSellInDate() {
+            items = new Item[]{new Item(GOOD_WINE, 0, 10)};
+            app = new GildedTros(items);
+
+            app.updateQuality();
+            assertEquals(-1, items[0].sellIn);
+            assertEquals(12, items[0].quality);
+        }
     }
 
     @Nested
