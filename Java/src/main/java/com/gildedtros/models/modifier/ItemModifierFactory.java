@@ -5,6 +5,14 @@ import com.gildedtros.models.Item;
 import static com.gildedtros.constants.ItemNames.*;
 
 public class ItemModifierFactory {
+
+    /**
+     * Creates an ItemModifier based on the item name.
+     *
+     * @param item The item for which to create a modifier.
+     * @return An instance of ItemModifier.
+     */
+
     public ItemModifier createModifier(Item item) {
         switch (item.name) {
             case GOOD_WINE:

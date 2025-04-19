@@ -3,6 +3,11 @@ package com.gildedtros.models.modifier;
 import com.gildedtros.models.Item;
 
 public class SmellyItemModifier implements ItemModifier {
+
+    /**
+     * Smelly items decrease in quality twice as fast as normal items.
+     */
+
     @Override
     public void updateQualityItem(Item item) {
         if (item.quality > 0) {
