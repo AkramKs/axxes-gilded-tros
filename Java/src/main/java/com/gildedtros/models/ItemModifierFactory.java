@@ -12,6 +12,10 @@ public class ItemModifierFactory {
                 return new BackstagePassModifier();
             case B_DAWG_KEYCHAIN:
                 return new LegendaryItemModifier();
+            case DUPLICATE_CODE:
+            case LONG_METHODS:
+            case UGLY_VARIABLE_NAMES:
+                return new SmellyItemModifier();
             default:
                 return new DefaultItemModifier();
         }

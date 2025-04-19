@@ -130,4 +130,51 @@ public class GildedTrosTest {
         }
     }
 
+    @Nested
+    class SmellyItems {
+        @Test
+        void duplicateCodeDegradesTwiceAsFast() {
+            items = new Item[]{new Item(DUPLICATE_CODE, 10, 10)};
+            app = new GildedTros(items);
+            app.updateQuality();
+            assertEquals(9, items[0].sellIn);
+            assertEquals(8, items[0].quality);
+        }
+
+        @Test
+        void longMethodsDegradesTwiceAsFast() {
+            items = new Item[]{new Item(LONG_METHODS, 10, 10)};
+            app = new GildedTros(items);
+            app.updateQuality();
+            assertEquals(9, items[0].sellIn);
+            assertEquals(8, items[0].quality);
+        }
+
+        @Test
+        void uglyVariableNamesDegradesTwiceAsFast() {
+            items = new Item[]{new Item(UGLY_VARIABLE_NAMES, 10, 10)};
+            app = new GildedTros(items);
+            app.updateQuality();
+            assertEquals(9, items[0].sellIn);
+            assertEquals(8, items[0].quality);
+        }
+
+        @Test
+        void smellyItemsDegradeTwiceAsFastAfterExpiry() {
+            items = new Item[]{new Item(DUPLICATE_CODE, 0, 10)};
+            app = new GildedTros(items);
+            app.updateQuality();
+            assertEquals(-1, items[0].sellIn);
+            assertEquals(6, items[0].quality);
+        }
+
+        @Test
+        void smellyItemsQualityNeverNegative() {
+            items = new Item[]{new Item(LONG_METHODS, 5, 0)};
+            app = new GildedTros(items);
+            app.updateQuality();
+            assertEquals(4, items[0].sellIn);
+            assertEquals(0, items[0].quality);
+        }
+    }
 }
