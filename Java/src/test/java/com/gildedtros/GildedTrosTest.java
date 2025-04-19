@@ -84,6 +84,16 @@ public class GildedTrosTest {
             assertEquals(-1, items[0].sellIn);
             assertEquals(12, items[0].quality);
         }
+
+        @Test
+        void qualityNeverExceedsFifty() {
+            items = new Item[]{new Item(GOOD_WINE, 0, 50)};
+            app = new GildedTros(items);
+
+            app.updateQuality();
+            assertEquals(-1, items[0].sellIn);
+            assertEquals(50, items[0].quality);
+        }
     }
 
     @Nested
@@ -176,6 +186,15 @@ public class GildedTrosTest {
             app.updateQuality();
             assertEquals(-1, items[0].sellIn);
             assertEquals(6, items[0].quality);
+        }
+
+        @Test
+        void smellyItemDegradesToZeroQuality() {
+            items = new Item[]{new Item(DUPLICATE_CODE, 5, 1)};
+            app = new GildedTros(items);
+            app.updateQuality();
+            assertEquals(4, items[0].sellIn);
+            assertEquals(0, items[0].quality);
         }
 
         @Test
