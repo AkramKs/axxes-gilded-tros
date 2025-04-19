@@ -12,7 +12,8 @@ public class GildedTrosTest {
     private GildedTros app;
     private Item[] items;
 
-    //Todo check all possible scenarios based on the Gilded Tros document.....
+    //Todo add tests for DefaultItemModifierTest , BackstagePassModifierTest, SmellyItemModifierTest
+    //Todo add tests for ItemModifierFactoryTest
 
     @Nested
     class GeneralItemRules {
@@ -60,7 +61,6 @@ public class GildedTrosTest {
             assertEquals(50, items[0].quality);
         }
     }
-
 
     @Nested
     class GoodWineItem {

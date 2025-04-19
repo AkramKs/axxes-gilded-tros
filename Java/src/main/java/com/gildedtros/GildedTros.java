@@ -18,9 +18,7 @@ public class GildedTros {
             ItemModifier strategy = strategyFactory.createStrategy(item);
             strategy.updateQualityItem(item);
             strategy.updateSellInItem(item);
-            if (item.sellIn < 0) {
-                strategy.updateExpiredItem(item);
-            }
+            strategy.updateExpiredItem(item);
         }
     }
 }
