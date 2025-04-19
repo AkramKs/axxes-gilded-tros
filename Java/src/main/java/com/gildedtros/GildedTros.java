@@ -1,8 +1,8 @@
 package com.gildedtros;
 
 import com.gildedtros.models.Item;
-import com.gildedtros.models.ItemModifier;
-import com.gildedtros.models.ItemModifierFactory;
+import com.gildedtros.models.modifier.ItemModifier;
+import com.gildedtros.models.modifier.ItemModifierFactory;
 
 public class GildedTros {
     private final Item[] items;

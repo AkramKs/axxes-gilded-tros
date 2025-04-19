@@ -1,4 +1,6 @@
-package com.gildedtros.models;
+package com.gildedtros.models.modifier;
+
+import com.gildedtros.models.Item;
 
 import static com.gildedtros.constants.ItemNames.*;
 

@@ -1,10 +1,12 @@
-package com.gildedtros.models;
+package com.gildedtros.models.modifier;
 
-public class SmellyItemModifier implements ItemModifier {
+import com.gildedtros.models.Item;
+
+public class DefaultItemModifier implements ItemModifier {
     @Override
     public void updateQualityItem(Item item) {
         if (item.quality > 0) {
-            item.quality = Math.max(0, item.quality - 2);
+            item.quality--;
         }
     }
 
@@ -15,8 +17,8 @@ public class SmellyItemModifier implements ItemModifier {
 
     @Override
     public void updateExpiredItem(Item item) {
-        if (item.sellIn < 0) {
-            item.quality = Math.max(0, item.quality - 2);
+        if (item.sellIn < 0 && item.quality > 0) {
+            item.quality--;
         }
     }
 }
