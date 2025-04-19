@@ -15,7 +15,7 @@ public class GildedTros {
 
     public void updateQuality() {
         for (Item item : items) {
-            ItemModifier strategy = strategyFactory.createStrategy(item);
+            ItemModifier strategy = strategyFactory.createModifier(item);
             strategy.updateQualityItem(item);
             strategy.updateSellInItem(item);
             strategy.updateExpiredItem(item);

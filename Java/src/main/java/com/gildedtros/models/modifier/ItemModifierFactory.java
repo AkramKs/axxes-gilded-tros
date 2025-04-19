@@ -5,7 +5,7 @@ import com.gildedtros.models.Item;
 import static com.gildedtros.constants.ItemNames.*;
 
 public class ItemModifierFactory {
-    public ItemModifier createStrategy(Item item) {
+    public ItemModifier createModifier(Item item) {
         switch (item.name) {
             case GOOD_WINE:
                 return new GoodWineModifier();
