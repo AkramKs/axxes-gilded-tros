@@ -3,6 +3,7 @@ package com.gildedtros;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import static com.gildedtros.constants.ItemNames.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GildedTrosTest {
@@ -17,14 +18,14 @@ public class GildedTrosTest {
 
         @Test
         void shouldHaveSellInAndQuality() {
-            Item item = new Item("Ring of Cleansening Code", 10, 20);
+            Item item = new Item(RING_OF_CLEANSENING, 10, 20);
             assertEquals(10, item.sellIn);
             assertEquals(20, item.quality);
         }
 
         @Test
         void shouldLowersSellInAndQualityAtEndOfDay() {
-            items = new Item[]{new Item("Elixir of the SOLID", 5, 7)};
+            items = new Item[]{new Item(ELIXIR_OF_THE_SOLD, 5, 7)};
             app = new GildedTros(items);
             app.updateQuality();
             assertEquals(4, items[0].sellIn);
@@ -33,7 +34,7 @@ public class GildedTrosTest {
 
         @Test
         void shouldDegradeQualityTwiceAsFastAfterSellDate() {
-            items = new Item[]{new Item("Elixir of the SOLID", 0, 10)};
+            items = new Item[]{new Item(ELIXIR_OF_THE_SOLD, 0, 10)};
             app = new GildedTros(items);
             app.updateQuality();
             assertEquals(-1, items[0].sellIn);
@@ -42,7 +43,7 @@ public class GildedTrosTest {
 
         @Test
         void qualityIsNeverNegative() {
-            items = new Item[]{new Item("Elixir of the SOLID", 5, 0)};
+            items = new Item[]{new Item(ELIXIR_OF_THE_SOLD, 5, 0)};
             app = new GildedTros(items);
             app.updateQuality();
             assertEquals(4, items[0].sellIn);
@@ -51,7 +52,7 @@ public class GildedTrosTest {
 
         @Test
         void qualityNeverExceedsFifty() {
-            items = new Item[]{new Item("Good Wine", 5, 50)};
+            items = new Item[]{new Item(GOOD_WINE, 5, 50)};
             app = new GildedTros(items);
             app.updateQuality();
             assertEquals(4, items[0].sellIn);
@@ -65,7 +66,7 @@ public class GildedTrosTest {
 
         @Test
         void qualityIncreasesOverTime() {
-            items = new Item[]{new Item("Good Wine", 10, 10)};
+            items = new Item[]{new Item(GOOD_WINE, 10, 10)};
             app = new GildedTros(items);
 
             app.updateQuality();
@@ -79,7 +80,7 @@ public class GildedTrosTest {
 
         @Test
         void neverDecreasesInSellInOrQuality() {
-            items = new Item[]{new Item("B-DAWG Keychain", 0, 80)};
+            items = new Item[]{new Item(B_DAWG_KEYCHAIN, 0, 80)};
             app = new GildedTros(items);
 
             app.updateQuality();
@@ -93,7 +94,7 @@ public class GildedTrosTest {
 
         @Test
         void increasesBy1WhenMoreThan10DaysLeft() {
-            items = new Item[]{new Item("Backstage passes for Re:Factor", 11, 20)};
+            items = new Item[]{new Item(BACKSTAGE_PASSES_REFACTOR, 11, 20)};
             app = new GildedTros(items);
             app.updateQuality();
             assertEquals(10, items[0].sellIn);
@@ -102,7 +103,7 @@ public class GildedTrosTest {
 
         @Test
         void increasesBy2When10OrLessDaysLeft() {
-            items = new Item[]{new Item("Backstage passes for Re:Factor", 10, 20)};
+            items = new Item[]{new Item(BACKSTAGE_PASSES_REFACTOR, 10, 20)};
             app = new GildedTros(items);
             app.updateQuality();
             assertEquals(9, items[0].sellIn);
@@ -111,7 +112,7 @@ public class GildedTrosTest {
 
         @Test
         void increasesBy3When5OrLessDaysLeft() {
-            items = new Item[]{new Item("Backstage passes for HAXX", 5, 20)};
+            items = new Item[]{new Item(BACKSTAGE_PASSES_HAXX, 5, 20)};
             app = new GildedTros(items);
             app.updateQuality();
             assertEquals(4, items[0].sellIn);
@@ -120,7 +121,7 @@ public class GildedTrosTest {
 
         @Test
         void dropsToZeroAfterConcert() {
-            items = new Item[]{new Item("Backstage passes for HAXX", 0, 20)};
+            items = new Item[]{new Item(BACKSTAGE_PASSES_HAXX, 0, 20)};
             app = new GildedTros(items);
             app.updateQuality();
             assertEquals(-1, items[0].sellIn);
