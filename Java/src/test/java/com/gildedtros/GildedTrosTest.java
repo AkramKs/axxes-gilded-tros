@@ -12,9 +12,6 @@ public class GildedTrosTest {
     private GildedTros app;
     private Item[] items;
 
-    //Todo add tests for DefaultItemModifierTest , BackstagePassModifierTest, SmellyItemModifierTest
-    //Todo add tests for ItemModifierFactoryTest
-
     @Nested
     class GeneralItemRules {
 
@@ -152,6 +149,7 @@ public class GildedTrosTest {
 
     @Nested
     class SmellyItems {
+
         @Test
         void duplicateCodeDegradesTwiceAsFast() {
             items = new Item[]{new Item(DUPLICATE_CODE, 10, 10)};
