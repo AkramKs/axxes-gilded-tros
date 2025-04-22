@@ -5,17 +5,13 @@ import com.gildedtros.models.modifier.ItemModifier;
 import com.gildedtros.models.modifier.ItemModifierFactory;
 
 public class GildedTros {
-    private final Item[] items;
-    private final ItemModifierFactory strategyFactory;
 
-    public GildedTros(Item[] items) {
-        this.items = items;
-        this.strategyFactory = new ItemModifierFactory();
+    private GildedTros() {
     }
 
-    public void updateQuality() {
+    public static void updateQuality(Item[] items) {
         for (Item item : items) {
-            ItemModifier strategy = strategyFactory.createModifier(item);
+            ItemModifier strategy = ItemModifierFactory.createModifier(item);
             strategy.updateQualityItem(item);
             strategy.updateSellInItem(item);
             strategy.updateExpiredItem(item);

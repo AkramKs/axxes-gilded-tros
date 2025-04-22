@@ -18,9 +18,8 @@ public class TexttestFixture {
                 // these smelly items do not work properly yet
                 new Item("Duplicate Code", 3, 6),
                 new Item("Long Methods", 3, 6),
-                new Item("Ugly Variable Names", 3, 6) };
-
-        GildedTros app = new GildedTros(items);
+                new Item("Ugly Variable Names", 3, 6)
+        };
 
         int days = 2;
         if (args.length > 0) {
@@ -34,8 +33,8 @@ public class TexttestFixture {
                 System.out.println(item);
             }
             System.out.println();
-            app.updateQuality();
+
+            GildedTros.updateQuality(items);
         }
     }
-
 }

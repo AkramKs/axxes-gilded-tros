@@ -6,6 +6,9 @@ import static com.gildedtros.constants.ItemNames.*;
 
 public class ItemModifierFactory {
 
+    private ItemModifierFactory() {
+    }
+
     /**
      * Creates an ItemModifier based on the item name.
      *
@@ -13,7 +16,7 @@ public class ItemModifierFactory {
      * @return An instance of ItemModifier.
      */
 
-    public ItemModifier createModifier(Item item) {
+    public static ItemModifier createModifier(Item item) {
         switch (item.name) {
             case GOOD_WINE:
                 return new GoodWineModifier();
